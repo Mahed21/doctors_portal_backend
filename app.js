@@ -5,4 +5,6 @@ const mongoose = require("mongoose");
 const { query } = require("express");
 app.use(express.json());
 app.use(cors());
+const PatientRouter = require("./router/patient.router");
+app.use("/patientDetails", PatientRouter);
 module.exports = app;
