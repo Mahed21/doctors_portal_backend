@@ -28,7 +28,7 @@ const patientSchema = mongoose.Schema(
       trim: true,
     },
     patientId: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

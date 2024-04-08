@@ -1,16 +1,24 @@
 const Patient = require("../model/patient");
 exports.getPatientDetails = async (req, res) => {
   try {
-    const patient = await Patient.find({});
+    const page = parseInt(req.query.page) || 1; // Parse page number from query parameters or default to 1
+    const limit = 3; // Number of items per page
+    const skip = (page - 1) * limit; // Calculate number of items to skip
+
+    const patients = await Patient.find({}).skip(skip).limit(limit);
+    const totalPatients = await Patient.countDocuments(); // Count total number of patients
+
     res.status(200).json({
       status: "success",
-      message: "data get Successfully",
-      data: patient,
+      message: "Data retrieved successfully",
+      data: patients,
+      totalPages: Math.ceil(totalPatients / limit), // Calculate total number of pages
+      currentPage: page,
     });
   } catch (error) {
     res.status(400).json({
       status: "fail",
-      message: "data fail to get",
+      message: "Failed to retrieve data",
       data: error.message,
     });
   }
