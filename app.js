@@ -15,7 +15,8 @@ const DrugsRouter = require("./router/drugs.router");
 app.use("/drugsDetails", DrugsRouter);
 
 
-
+const ElementsRouter = require("./router/elements.router");
+app.use("/elementsDetails", ElementsRouter);
 
 
 module.exports = app;
