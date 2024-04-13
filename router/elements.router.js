@@ -6,5 +6,7 @@ router
     .route("/")
     .get(elementsController.getElementsDetails)
     .post(elementsController.createElementsDetails);
+router.route("/:id").delete(elementsController.DeleteElementInfo);
+router.route("/:id").get(elementsController.getElementByID);
 
 module.exports = router;
