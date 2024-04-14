@@ -2,7 +2,7 @@ const Patient = require("../model/patient");
 exports.getPatientDetails = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1; // Parse page number from query parameters or default to 1
-    const limit = 3; // Number of items per page
+    const limit = 8; // Number of items per page
     const skip = (page - 1) * limit; // Calculate number of items to skip
 
     const patients = await Patient.find({}).skip(skip).limit(limit);
